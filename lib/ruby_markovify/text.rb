@@ -83,4 +83,10 @@ module RubyMarkovify
       make_sentence(word_split(beginning), options)
     end
   end
+
+  class NewlineText < Text
+    def sentence_split(text)
+      text.split /\s*\n\s*/
+    end
+  end
 end
