@@ -89,4 +89,10 @@ module RubyMarkovify
       text.split /\s*\n\s*/
     end
   end
+
+  class ArrayText < Text
+    def sentence_split(text)
+      text
+    end
+  end
 end
