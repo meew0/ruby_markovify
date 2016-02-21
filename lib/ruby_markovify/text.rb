@@ -1,8 +1,10 @@
 require 'ruby_markovify/chain'
+require 'ruby_markovify/splitters'
 require 'unidecode'
 
 module RubyMarkovify
   class Text
+
     def initialize(input_text, state_size = nil, chain = nil)
       runs = generate_corpus(input_text)
       @rejoined_text = sentence_join(runs.map { |e| word_join(e) })
@@ -10,8 +12,9 @@ module RubyMarkovify
       @chain = chain || Chain.new(runs, state_size)
     end
 
+    include RubyMarkovify::Splitters
     def sentence_split(text)
-      RubyMarkovify.split_into_sentences(text)
+      split_into_sentences(text)
     end
 
     def sentence_join(sentences)
