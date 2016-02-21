@@ -38,6 +38,8 @@ puts text.make_short_sentence(40)  # Generates a random sentence at most 40 char
 
 In addition to the default markovify `Text` and `NewlineText` classes, ruby_markovify also includes an `ArrayText` class that uses an array (already split into sentences) as its corpus.
 
+Note that ruby_markovify currently implements none of the JSON methods (`Chain#to_json`, `Chain.from_json` and `Text.from_chain`), so if you need them you'll have to implement them yourself (feel free to make a PR!)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
