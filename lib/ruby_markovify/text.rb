@@ -4,7 +4,6 @@ require 'unidecode'
 
 module RubyMarkovify
   class Text
-
     def initialize(input_text, state_size = nil, chain = nil)
       runs = generate_corpus(input_text)
       @rejoined_text = sentence_join(runs.map { |e| word_join(e) })
