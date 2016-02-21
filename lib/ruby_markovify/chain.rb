@@ -19,7 +19,7 @@ module RubyMarkovify
         items = [:begin] * state_size + run + [:end]
 
         0.upto(run.length + 1) do |i|
-          state = items[i..i+state_size]
+          state = items[i...i+state_size]
           follow = items[i+state_size]
 
           model[state] ||= {}
@@ -35,7 +35,7 @@ module RubyMarkovify
       choices, weights = @model[state].keys, @model[state].values
       cumdist = RubyMarkovify.cumulative_sum(weights)
       r = rand * cumdist[-1]
-      choices.bsearch { |e| e <= r }
+      choices[cumdist.index { |e| e >= r }]
     end
 
     def gen(init_state = nil)

@@ -57,12 +57,15 @@ module RubyMarkovify
         index + groups[0].length + groups[1].length
       end
 
-      spans = [[nil] + end_indices].zip(end_indices + [nil])
+      spans = ([nil] + end_indices).zip(end_indices + [nil])
 
-      spans.map do |elem|
+      ret = spans.map do |elem|
         start_idx, end_idx = elem
+        next if end_idx == nil
+        start_idx ||= 0
         text[start_idx..end_idx].strip
       end
+      ret.compact
     end
   end
 end
