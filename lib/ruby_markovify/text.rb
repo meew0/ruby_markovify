@@ -73,10 +73,11 @@ module RubyMarkovify
     end
 
     def make_short_sentence(char_limit, options = {})
-      loop do
+      (options[:tries] || DEFAULT_TRIES).times do
         sentence = make_sentence(nil, options)
         return sentence if sentence && sentence.length < char_limit
       end
+      nil
     end
 
     def make_sentence_with_start(beginning, options = {})
